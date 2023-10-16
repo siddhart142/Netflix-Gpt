@@ -1,6 +1,8 @@
 import React, { useState, useRef } from 'react'
 import Header from './Header'
 import {checkValidData} from "../Utils/Validate"
+import { createUserWithEmailAndPassword,signInWithEmailAndPassword } from "firebase/auth";
+import {auth} from "../Utils/firebase"
 const Login = () => {
   const [isSignIn,setSignIn] = useState(true);
   const [errorMessage,setErrorMessage] = useState(null)
@@ -15,6 +17,37 @@ const Login = () => {
     //  to get this email and password, we can use state variable(as done in prev project) or reference to the input box using useRef (done in this project)
     const message=checkValidData(email.current.value,password.current.value)
     setErrorMessage(message)
+
+    if(message) return;
+
+    //SignUp and SignIn Logic
+    if(!isSignIn){
+      // SignUp Logic
+      createUserWithEmailAndPassword(auth, email.current.value, password.current.value)
+      .then((userCredential) => {
+        // Signed up 
+        const user = userCredential.user;
+        console.log(user)
+      })
+      .catch((error) => {
+        const errorCode = error.code;
+        const errorMessage = error.message;
+        setErrorMessage(error+" "+errorMessage)
+      });
+    }
+    else{
+      // SignIn Logic
+      signInWithEmailAndPassword(auth, email.current.value,password.current.value)
+      .then((userCredential) => {
+        // Signed in 
+        const user = userCredential.user;
+        // ...
+      })
+      .catch((error) => {
+        const errorCode = error.code;
+        const errorMessage = error.message;
+      });
+    }
 
     // if valid procced further
   }
