@@ -3,15 +3,17 @@ import Header from './Header'
 import {checkValidData} from "../Utils/Validate"
 import { createUserWithEmailAndPassword,signInWithEmailAndPassword } from "firebase/auth";
 import {auth} from "../Utils/firebase"
-import { useNavigate } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 import { addUser } from '../Utils/userSlice';
 import { updateProfile } from "firebase/auth";
+
+
 const Login = () => {
   const [isSignIn,setSignIn] = useState(true);
   const [errorMessage,setErrorMessage] = useState(null)
-  const navigate = useNavigate();
+
   const dispatch = useDispatch();
+
   const email = useRef(null);
   const password = useRef(null);
   const name = useRef(null);
@@ -24,9 +26,7 @@ const Login = () => {
     //  to get this email and password, we can use state variable(as done in prev project) or reference to the input box using useRef (done in this project)
     const message=checkValidData(email.current.value,password.current.value)
     setErrorMessage(message)
-
     if(message) return;
-
     //SignUp and SignIn Logic
     if(!isSignIn){
       // SignUp Logic
@@ -40,11 +40,9 @@ const Login = () => {
           // Profile updated!
           const { uid, email, displayName, photoURL } = auth.currentUser;
           dispatch(addUser({ uid:uid, email : email, displayName :displayName ,photoURL : photoURL}));
-          navigate("/browse")
           // ...
         }).catch((error) => {
           // An error occurred
-          // ...
           setErrorMessage(error+" "+errorMessage)
         });
         console.log(user)
@@ -54,7 +52,7 @@ const Login = () => {
       .catch((error) => {
         const errorCode = error.code;
         const errorMessage = error.message;
-        setErrorMessage(error+" "+errorMessage)
+        setErrorMessage(errorCode+" "+errorMessage)
       });
     }
     else{
@@ -62,19 +60,17 @@ const Login = () => {
       signInWithEmailAndPassword(auth, email.current.value,password.current.value)
       .then((userCredential) => {
         // Signed in 
-        // const user = userCredential.user;
-        navigate("/browse")
-        // ...
+        const user = userCredential.user;
+        
       })
       .catch((error) => {
         const errorCode = error.code;
         const errorMessage = error.message;
-        setErrorMessage(error+" "+errorMessage)
+        setErrorMessage(errorCode+" "+errorMessage)
       });
     }
-
-    // if valid procced further
   }
+
   return (
     <div>
 
