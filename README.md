@@ -24,4 +24,5 @@
 - movieList
 - movieCard
 - scroll
-- dynamic list
+- dynamic list (popular , tending , nowplaying ..etc)
+- Gpt search feature

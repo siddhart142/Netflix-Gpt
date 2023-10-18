@@ -3,11 +3,11 @@ import { useSelector } from 'react-redux'
 import VideoTitle from './VideoTitle'
 import VideoBg from "./VideoBg"
 const MainContainer = () => {
-    const movies = useSelector((store) => store.movies?.nowPlayingMovies)
+    const movies = useSelector((store) => store.movies?.popularMovies)
     if(!movies) return;
 
-    const mainMovie = movies[1];
-    const {original_title, overview,id} =mainMovie
+    const mainMovie = movies[0];
+    const {original_title, overview,id} = mainMovie
 
   return (
     <div>
