@@ -7,6 +7,10 @@ const lang = {
     hindi : {
         search : "खोज",
         GptPlaceHolder : "आज आप क्या देखना चाहेंगे?",
+    },
+    spanish : {
+        search : "buscar",
+        GptPlaceHolder : "¿Qué te gustaría ver hoy?",
     }
 
 }

@@ -1,6 +1,10 @@
 import React from 'react'
 import lang from '../Utils/Language'
+import { useSelector } from 'react-redux'
+
 const GptSearchBar = () => {
+    const language = useSelector((store)=> store.config.lang)
+    console.log(language)
   return (
     <div>
         <div className='absolute -z-10'>
@@ -9,8 +13,8 @@ const GptSearchBar = () => {
     
     <div className='p-[10%] '>
       <form className=' m-4 bg-black grid grid-cols-12 bg-opacity-70'>
-        <input className='p-4 m-4 col-span-9 rounded-md' type="text" placeholder={lang.hindi.GptPlaceHolder}></input>
-        <button className='col-span-3 m-4 py-2 px-2 bg-red-600 rounded-md'>{lang.hindi.search}</button>
+        <input className='p-4 m-4 col-span-9 rounded-md' type="text" placeholder={lang[language].GptPlaceHolder}></input>
+        <button className='col-span-3 m-4 py-2 px-2 bg-red-600 rounded-md'>{lang[language].search}</button>
       </form>
     </div>
     </div>
