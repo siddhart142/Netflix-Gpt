@@ -10,6 +10,7 @@ import { changeLanguage } from '../Utils/configApp';
 const Header = () => {
 
   const user=useSelector((store) => store.user);
+  const shoWGpt = useSelector((store) => store.gpt.showGptSearch)
   const navigate = useNavigate();
   const dispatch = useDispatch()
 
@@ -51,16 +52,18 @@ const Header = () => {
       <div className='w-screen absolute px-20 py-4 bg-gradient-to-b from-black z-10 flex justify-between' >
         <img className='w-44' src="https://cdn.cookielaw.org/logos/dd6b162f-1a32-456a-9cfe-897231c7763c/4345ea78-053c-46d2-b11e-09adaef973dc/Netflix_Logo_PMS.png" alt="logo" />
         {user && (<div className='flex'>
-        <select className='p-4 bg-slate-500 text-white m-4 rounded-md ' onChange={handleLanguageChange}>
+        
+        {shoWGpt && <select className='p-4 bg-transparent text-white m-4 rounded-md ' onChange={handleLanguageChange}>
         {
-          SUPPORTED_LANG.map((lang) => <option key={lang.identifier} value={lang.identifier}>
+          SUPPORTED_LANG.map((lang) => <option className="text-black" key={lang.identifier} value={lang.identifier}>
           {lang.name}
           </option>)
         }
-        </select>
-          <button onClick={handleGpt} className='text-white bg-red-600 rounded-md px-4 m-4 bg-opacity-50'>GPT Search</button>
+        
+        </select>}
+          <button onClick={handleGpt} className='text-white  rounded-md px-4 m-4 bg-opacity-50'>{shoWGpt ? "Home Page" : "GPT Search"}</button>
           <img className="w-10 rounded-2xl m-4 " src={user? user.photoURL : "https://images.unsplash.com/photo-1511367461989-f85a21fda167?auto=format&fit=crop&q=80&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&w=1031"}/>
-          <button onClick={handleSignOut} className=' m-4 rounded-md px-2 font-bold text-zinc-50 bg-orange-600 bg-opacity-40'>Sign Out</button>
+          <button onClick={handleSignOut} className=' m-4 rounded-md px-2 font-bold text-white bg-opacity-40'>Sign Out</button>
         </div>)}
       </div>
       

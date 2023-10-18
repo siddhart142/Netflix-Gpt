@@ -13,3 +13,5 @@ export const options = {
     {identifier : "hindi", name : "Hindi"},
     {identifier : "spanish", name : "Spanish"},
   ]
+
+  export const OPENAI_KEY = "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"

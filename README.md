@@ -26,3 +26,6 @@
 - scroll
 - dynamic list (popular , tending , nowplaying ..etc)
 - Gpt search feature
+- Gpt Search Page
+- Gpt search Bar
+- Multilingual Feature on GPT Page
