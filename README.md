@@ -17,3 +17,11 @@
 - BugFix : redirect if logged in to browse and vice-versa.
 - create a movies Slice
 - fetch nowPlaying Movies using TMDB Api
+- Custom Hook for nowPlaying movies
+- Fetch data for movie trailer
+- Embeded the youtube video and make it autoplay and mute
+- tailwind to make it look cool
+- movieList
+- movieCard
+- scroll
+- dynamic list

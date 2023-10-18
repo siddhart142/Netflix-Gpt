@@ -45,7 +45,7 @@ const Login = () => {
           // An error occurred
           setErrorMessage(error+" "+errorMessage)
         });
-        console.log(user)
+        // console.log(user)
        
 
       })

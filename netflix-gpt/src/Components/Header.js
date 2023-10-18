@@ -29,7 +29,7 @@ const Header = () => {
           navigate("/browse");
         } else {
           // User is signed out
-          console.log("user Signed out")
+          // console.log("user Signed out")
           dispatch(removeUser())
           navigate("/");
           
