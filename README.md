@@ -14,3 +14,6 @@
 - implemented signUp/signIn Api
 - created redux Store and user Slice
 - SignOut user and update profile
+- BugFix : redirect if logged in to browse and vice-versa.
+- create a movies Slice
+- fetch nowPlaying Movies using TMDB Api
